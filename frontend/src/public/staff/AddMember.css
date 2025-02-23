@@ -1,0 +1,87 @@
+/* General container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: white;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 250px;
+  background-color: #b30000;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+  background-color: #ff3333;
+  border-radius: 5px;
+}
+
+/* Main Content Styling */
+.dashboard-content {
+  flex: 1;
+  padding: 40px;
+}
+
+/* Form Styling */
+.add-member-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-member-form label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.add-member-form input,
+.add-member-form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-member-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #b30000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-member-form button:hover {
+  background-color: #ff3333;
+}
