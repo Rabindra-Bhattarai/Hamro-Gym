@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import ProtectedRoute from './protectedRoute';
 
 // Lazy loading components
 const Login = lazy(() => import('./public/Login'));
@@ -10,6 +11,7 @@ const ViewStaff = lazy(() => import('./public/Admin/ViewStaff')); // Admin can v
 const StaffDashboard = lazy(() => import('./public/staff/StaffDashboard'));
 const ViewMembers = lazy(() => import('./public/staff/ViewMembers')); // Staff and Admin can view members
 const AddMember = lazy(() => import('./public/staff/AddMember'));
+
 
 const App = () => (
   <Router>
@@ -21,14 +23,32 @@ const App = () => (
         <Route path="/register" element={<Register />} />
 
         {/* Admin Routes */}
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/admin-dashboard/view-staff" element={<ViewStaff />} />
+        <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          </Route>
 
-        
+        <Route path="/admin-dashboard/view-staff" element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <ViewStaff />
+          </ProtectedRoute>
+        } />
+
         {/* Staff Routes */}
-        <Route path="/staff-dashboard" element={<StaffDashboard />} />
-        <Route path="/staff-dashboard/view-members" element={<ViewMembers />} />
-        <Route path="/staff-dashboard/add-member" element={<AddMember />} />
+        <Route path="/staff-dashboard" element={
+          <ProtectedRoute allowedRoles={['staff', 'admin']}>
+            <StaffDashboard />
+          </ProtectedRoute>
+        } />
+        <Route path="/staff-dashboard/view-members" element={
+          <ProtectedRoute allowedRoles={['staff', 'admin']}>
+            <ViewMembers />
+          </ProtectedRoute>
+        } />
+        <Route path="/staff-dashboard/add-member" element={
+          <ProtectedRoute allowedRoles={['staff', 'admin']}>
+            <AddMember />
+          </ProtectedRoute>
+        } />
       </Routes>
     </Suspense>
   </Router>

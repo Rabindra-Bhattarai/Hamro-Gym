@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 import './Login.css';
 
 const InputField = ({ label, type, name, value, onChange, required }) => (
@@ -31,14 +32,30 @@ const Login = () => {
     if (errorMessage) setErrorMessage('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (credentials.phoneNumber === 'admin' && credentials.password === 'admin') {
-      navigate('/admin-dashboard'); // Admin dashboard
-      return;
-    }
+    try {
+      const response = await axios.post("http://localhost:3000/api/auth/login", credentials);
+      
+      // Extract token and userType from API response
+      const { token, userType } = response.data;
 
-    navigate('/staff-dashboard'); // Staff dashboard
+      // Store in localStorage
+      localStorage.setItem("token", token);
+      localStorage.setItem("userType", userType);
+
+      // Redirect based on user type
+      if (userType === "admin") {
+        navigate("/admin-dashboard");
+      } else if (userType === "staff") {
+        navigate("/staff-dashboard");
+      } else {
+        setErrorMessage("Invalid user role.");
+      }
+
+    } catch (error) {
+      setErrorMessage(error.response?.data?.message || "Login failed. Please try again.");
+    }
   };
 
   return (

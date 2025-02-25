@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 import './Register.css';
 
 const InputField = ({ label, type, name, value, onChange, required }) => (
   <div className="formgroup">
-    <label htmlFor={name}>{label}</label> 
+    <label htmlFor={name}>{label}</label>
     <input
       id={name}
       type={type}
@@ -37,14 +38,26 @@ const Register = () => {
     if (errorMessage) setErrorMessage('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       setErrorMessage('Passwords do not match');
       return;
     }
 
-    navigate('/login');
+    try {
+      // Send registration data to the API
+      const response = await axios.post("http://localhost:3000/api/auth/register", formData);
+      // Assuming the response contains a success message or user data
+      console.log(response.data); // You can handle the response as needed
+
+      // Redirect to login page after successful registration
+      navigate('/login');
+    } catch (error) {
+      // Handle errors from the API
+      setErrorMessage(error.response?.data?.message || "Registration failed. Please try again.");
+    }
   };
 
   return (
