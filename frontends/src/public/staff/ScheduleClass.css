@@ -1,4 +1,4 @@
-/* StaffDashboard.css */
+/* ScheduleClass.css */
 
 /* General Styles */
 body {
@@ -24,6 +24,8 @@ body {
   flex-direction: column;
   align-items: flex-start;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto;
+  max-height: 100vh;
 }
 
 .sidebar h2 {
@@ -75,6 +77,10 @@ body {
   opacity: 1;
 }
 
+.sidebar ul li.active a {
+  background: rgba(255, 77, 77, 0.2);
+}
+
 .logout-btn {
   background: rgba(255, 77, 77, 0.2);
   border: none;
@@ -102,7 +108,7 @@ body {
 }
 
 /* Main Content Styles */
-.dashboard-content {
+.main-content {
   flex: 1;
   padding: 30px;
   background: rgba(255, 255, 255, 0.05);
@@ -110,28 +116,87 @@ body {
   margin: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  max-height: 100vh;
 }
 
-.dashboard-content h1 {
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
   font-size: 32px;
   color: #ff4d4d;
-  margin-bottom: 20px;
   font-weight: 600;
 }
 
-.chart-container {
+.user-info {
+  background: rgba(255, 77, 77, 0.2);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Schedule Form Styles */
+.schedule-form-container {
   background: rgba(34, 34, 34, 0.8);
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  margin-top: 20px;
 }
 
-.chart-container h2 {
-  font-size: 24px;
-  color: #ff4d4d;
-  margin-bottom: 20px;
+.schedule-form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formgroup label {
+  font-size: 16px;
   font-weight: 500;
+  color: #ff4d4d;
+}
+
+.formgroup input {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.formgroup input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.schedule-form-container button {
+  background: #ff4d4d;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.schedule-form-container button:hover {
+  background: #ff1a1a;
+  transform: translateY(-2px);
 }
 
 /* Responsive Design */
@@ -157,50 +222,32 @@ body {
     margin: 10px 0;
   }
 
-  .dashboard-content {
+  .main-content {
     padding: 15px;
     margin: 10px;
   }
 
-  .dashboard-content h1 {
+  .dashboard-header h2 {
     font-size: 24px;
   }
 
-  .chart-container {
+  .user-info {
+    font-size: 14px;
+  }
+
+  .schedule-form-container {
     padding: 15px;
   }
 
-  .chart-container h2 {
-    font-size: 20px;
+  .formgroup label {
+    font-size: 14px;
   }
-}
 
-/* Chart Styles */
-.recharts-wrapper {
-  margin: 0 auto;
-}
+  .formgroup input {
+    font-size: 14px;
+  }
 
-.recharts-cartesian-grid line {
-  stroke: rgba(255, 255, 255, 0.1);
-}
-
-.recharts-tooltip {
-  background: rgba(34, 34, 34, 0.9) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
-  color: #ffffff !important;
-}
-
-.recharts-legend-item-text {
-  color: #ffffff !important;
-}
-
-.recharts-bar-rectangle {
-  fill: #ff4d4d;
-  transition: fill 0.3s ease;
-}
-
-.recharts-bar-rectangle:hover {
-  fill: #ff1a1a;
+  .schedule-form-container button {
+    font-size: 14px;
+  }
 }

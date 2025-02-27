@@ -1,4 +1,4 @@
-/* AdminDashboard.css */
+/* MemberDashboard.css */
 
 /* General Styles */
 body {
@@ -28,16 +28,16 @@ body {
   text-align: center;
 }
 
-.sidebar nav ul {
+.sidebar ul {
   list-style: none;
   padding: 0;
 }
 
-.sidebar nav ul li {
+.sidebar ul li {
   margin: 15px 0;
 }
 
-.sidebar nav ul li a {
+.sidebar ul li a {
   color: white;
   text-decoration: none;
   font-size: 1.1rem;
@@ -48,11 +48,15 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.sidebar nav ul li a:hover {
+.sidebar ul li a:hover {
   background-color: #34495e;
 }
 
-/* Main Content Styles */
+.sidebar ul li a svg {
+  margin-right: 10px;
+}
+
+/* Dashboard Content Styles */
 .dashboard-content {
   flex: 1;
   padding: 20px;
@@ -62,30 +66,13 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-content h1 {
-  font-size: 2rem;
+.dashboard-content h2 {
+  font-size: 1.8rem;
   margin-bottom: 20px;
   color: #2c3e50;
 }
 
-.dashboard-content h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-/* Chart Container Styles */
-.chart-container {
-  margin-bottom: 30px;
-}
-
-.chart-container h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-/* Recharts Styles */
+/* Chart Styles */
 .recharts-wrapper {
   margin: 0 auto;
 }
@@ -102,25 +89,12 @@ body {
   padding: 10px;
 }
 
-.recharts-legend-item {
-  font-size: 0.9rem;
-}
-
-.recharts-legend-item-text {
-  color: #333;
-}
-
 .recharts-bar-rectangle {
   transition: fill 0.3s ease;
 }
 
 .recharts-bar-rectangle:hover {
   fill: #ff6666;
-}
-
-.recharts-pie-label {
-  font-size: 0.9rem;
-  fill: #333;
 }
 
 /* Responsive Styles */
@@ -140,7 +114,7 @@ body {
     font-size: 1.2rem;
   }
 
-  .sidebar nav ul li a {
+  .sidebar ul li a {
     font-size: 1rem;
     padding: 8px;
   }
@@ -150,16 +124,8 @@ body {
     padding: 15px;
   }
 
-  .dashboard-content h1 {
-    font-size: 1.8rem;
-  }
-
   .dashboard-content h2 {
-    font-size: 1.3rem;
-  }
-
-  .chart-container h2 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -172,7 +138,7 @@ body {
     font-size: 1rem;
   }
 
-  .sidebar nav ul li a {
+  .sidebar ul li a {
     font-size: 0.9rem;
     padding: 5px;
   }
@@ -182,15 +148,7 @@ body {
     padding: 10px;
   }
 
-  .dashboard-content h1 {
-    font-size: 1.5rem;
-  }
-
   .dashboard-content h2 {
-    font-size: 1.2rem;
-  }
-
-  .chart-container h2 {
     font-size: 1.2rem;
   }
 }

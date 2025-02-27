@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './ViewStaff.css'; // Create this CSS file for the specific styles
-
+import './ViewStaff.css';
 const ViewStaff = () => {
   const [staffList, setStaffList] = useState([
     { id: 1, name: 'Alice Smith', email: 'alice@example.com', contact: '9876543210' },

@@ -1,4 +1,4 @@
-/* AdminDashboard.css */
+/* MemberClassSchedule.css */
 
 /* General Styles */
 body {
@@ -8,7 +8,7 @@ body {
   color: #333;
 }
 
-.dashboard-container {
+.member-dashboard-container {
   display: flex;
   min-height: 100vh;
 }
@@ -28,16 +28,16 @@ body {
   text-align: center;
 }
 
-.sidebar nav ul {
+.sidebar ul {
   list-style: none;
   padding: 0;
 }
 
-.sidebar nav ul li {
+.sidebar ul li {
   margin: 15px 0;
 }
 
-.sidebar nav ul li a {
+.sidebar ul li a {
   color: white;
   text-decoration: none;
   font-size: 1.1rem;
@@ -48,12 +48,16 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.sidebar nav ul li a:hover {
+.sidebar ul li a:hover {
   background-color: #34495e;
 }
 
+.sidebar ul li a svg {
+  margin-right: 10px;
+}
+
 /* Main Content Styles */
-.dashboard-content {
+.member-class-schedule {
   flex: 1;
   padding: 20px;
   background-color: white;
@@ -62,70 +66,57 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-content h1 {
-  font-size: 2rem;
+.member-class-schedule h2 {
+  font-size: 1.8rem;
   margin-bottom: 20px;
   color: #2c3e50;
 }
 
-.dashboard-content h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #2c3e50;
+.member-class-schedule p {
+  font-size: 1.1rem;
+  color: #666;
 }
 
-/* Chart Container Styles */
-.chart-container {
-  margin-bottom: 30px;
+/* Class List Styles */
+.class-list {
+  list-style: none;
+  padding: 0;
 }
 
-.chart-container h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-/* Recharts Styles */
-.recharts-wrapper {
-  margin: 0 auto;
-}
-
-.recharts-cartesian-grid line {
-  stroke: #e0e0e0;
-}
-
-.recharts-tooltip {
-  background-color: rgba(255, 255, 255, 0.9);
+.class-item {
+  background-color: #f9f9f9;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: box-shadow 0.3s ease;
 }
 
-.recharts-legend-item {
-  font-size: 0.9rem;
+.class-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.recharts-legend-item-text {
-  color: #333;
+.class-item div {
+  margin-bottom: 10px;
 }
 
-.recharts-bar-rectangle {
-  transition: fill 0.3s ease;
+.class-item strong {
+  color: #2c3e50;
+  font-size: 1.2rem;
 }
 
-.recharts-bar-rectangle:hover {
-  fill: #ff6666;
+.class-item .status {
+  font-weight: bold;
+  color: #27ae60; /* Green for available, red for booked */
 }
 
-.recharts-pie-label {
-  font-size: 0.9rem;
-  fill: #333;
+.class-item .status.booked {
+  color: #e74c3c; /* Red for booked */
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .dashboard-container {
+  .member-dashboard-container {
     flex-direction: column;
   }
 
@@ -140,26 +131,18 @@ body {
     font-size: 1.2rem;
   }
 
-  .sidebar nav ul li a {
+  .sidebar ul li a {
     font-size: 1rem;
     padding: 8px;
   }
 
-  .dashboard-content {
+  .member-class-schedule {
     margin: 10px;
     padding: 15px;
   }
 
-  .dashboard-content h1 {
-    font-size: 1.8rem;
-  }
-
-  .dashboard-content h2 {
-    font-size: 1.3rem;
-  }
-
-  .chart-container h2 {
-    font-size: 1.3rem;
+  .member-class-schedule h2 {
+    font-size: 1.5rem;
   }
 }
 
@@ -172,25 +155,25 @@ body {
     font-size: 1rem;
   }
 
-  .sidebar nav ul li a {
+  .sidebar ul li a {
     font-size: 0.9rem;
     padding: 5px;
   }
 
-  .dashboard-content {
+  .member-class-schedule {
     margin: 5px;
     padding: 10px;
   }
 
-  .dashboard-content h1 {
-    font-size: 1.5rem;
-  }
-
-  .dashboard-content h2 {
+  .member-class-schedule h2 {
     font-size: 1.2rem;
   }
 
-  .chart-container h2 {
-    font-size: 1.2rem;
+  .class-item {
+    padding: 10px;
+  }
+
+  .class-item strong {
+    font-size: 1rem;
   }
 }

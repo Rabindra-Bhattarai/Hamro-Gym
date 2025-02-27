@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 import './Login.css';
 
 const InputField = ({ label, type, name, value, onChange, required }) => (
@@ -19,7 +19,7 @@ const InputField = ({ label, type, name, value, onChange, required }) => (
 );
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({ phoneNumber: '', password: '' });
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
@@ -34,27 +34,25 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.post("http://localhost:3000/api/auth/login", credentials);
-      
-      // Extract token and userType from API response
+      const response = await axios.post('http://localhost:3010/api/auth/login', credentials);
       const { token, userType } = response.data;
 
-      // Store in localStorage
-      localStorage.setItem("token", token);
-      localStorage.setItem("userType", userType);
+      // Store token and userType in localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('userType', userType);
 
-      // Redirect based on user type
-      if (userType === "admin") {
-        navigate("/admin-dashboard");
-      } else if (userType === "staff") {
-        navigate("/staff-dashboard");
-      } else {
-        setErrorMessage("Invalid user role.");
+      // Redirect based on role
+      if (userType === 'admin') {
+        navigate('/admin-dashboard');
+      } else if (userType === 'staff') {
+        navigate('/staff-dashboard');
+      } else if (userType === 'member') {
+        navigate('/member-dashboard');
       }
-
     } catch (error) {
-      setErrorMessage(error.response?.data?.message || "Login failed. Please try again.");
+      setErrorMessage(error.response?.data?.message || 'Login failed');
     }
   };
 
@@ -63,7 +61,7 @@ const Login = () => {
       <div className="loginwrapper">
         <h1 className="title">Login</h1>
         <form onSubmit={handleSubmit}>
-          <InputField label="Phone Number:" type="text" name="phoneNumber" value={credentials.phoneNumber} onChange={handleChange} required />
+          <InputField label="Email:" type="email" name="email" value={credentials.email} onChange={handleChange} required />
           <InputField label="Password:" type="password" name="password" value={credentials.password} onChange={handleChange} required />
           {errorMessage && <p className="error">{errorMessage}</p>}
           <button className="btn" type="submit">Login</button>

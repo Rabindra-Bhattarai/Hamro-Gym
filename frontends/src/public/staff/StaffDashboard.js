@@ -1,72 +1,60 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { Link, useNavigate } from 'react-router-dom';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import './StaffDashboard.css';
 
-const membershipData = [
-  { month: "Jan", members: 10 },
-  { month: "Feb", members: 15 },
-  { month: "Mar", members: 20 },
-  { month: "Apr", members: 30 },
-  { month: "May", members: 25 },
-];
-
-const membershipStatus = [
-  { name: "Active", value: 60 },
-  { name: "Expired", value: 40 },
-];
-
-const COLORS = ["#b30000", "#ff3333"];
-
 const StaffDashboard = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('loggedInUser'); // Clear login session
+    navigate('/login'); // Redirect to login page
+  };
+
+  // Sample data for the chart
+  const memberData = [
+    { name: 'Jan', members: 40 },
+    { name: 'Feb', members: 30 },
+    { name: 'Mar', members: 20 },
+    { name: 'Apr', members: 27 },
+    { name: 'May', members: 18 },
+    { name: 'Jun', members: 23 },
+    { name: 'Jul', members: 34 },
+  ];
+
   return (
     <div className="dashboard-container">
-      <aside className="sidebar">
-        <h2>HamroGym Staff</h2>
-        <nav>
-          <ul>
-            <li><Link to="/staff-dashboard/view-members-staff">View Members</Link></li>
-            <li><Link to="/staff-dashboard/add-member">Add Member</Link></li>
-            <li>
-              <Link to="/login" onClick={() => localStorage.removeItem("userToken")}>
-                Logout
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </aside>
+      {/* Sidebar */}
+      <nav className="sidebar">
+        <h2>🏋️ Staff Dashboard</h2>
+        <ul>
+          <li><Link to="/staff-dashboard/manage-members">Manage Members</Link></li>
+          <li><Link to="/staff-dashboard/schedule-class">Schedule Class</Link></li>
+          <li><Link to="/staff-dashboard/view-classes">View Classes</Link></li>
+          <li><button className="logout-btn" onClick={handleLogout}>🚪 Logout</button></li>
+        </ul>
+      </nav>
 
-      <main className="dashboard-content">
-        <h1>Welcome to Staff Dashboard</h1>
-
+      {/* Main Content */}
+      <div className="dashboard-content">
+        <h1>Welcome, Staff!</h1>
         <div className="chart-container">
-          <h2>Membership Growth</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={membershipData}>
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="members" fill="#b30000" />
-            </BarChart>
-          </ResponsiveContainer>
+          <h2>📊 Members Overview</h2>
+          <BarChart
+            width={600}
+            height={300}
+            data={memberData}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="members" fill="#d32f2f" />
+          </BarChart>
         </div>
-
-        <div className="chart-container">
-          <h2>Membership Status</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie data={membershipStatus} dataKey="value" cx="50%" cy="50%" outerRadius={80} label>
-                {membershipStatus.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </main>
+      </div>
     </div>
   );
 };
