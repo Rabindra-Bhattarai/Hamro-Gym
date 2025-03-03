@@ -1,0 +1,274 @@
+/* ManageMembers.css */
+
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+  color: #ffffff;
+}
+
+.manage-members-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: row;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 280px;
+  background: rgba(34, 34, 34, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  overflow-y: auto; /* Enables scrolling when content overflows */
+}
+.sidebar h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #ff4d4d;
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar ul li a:hover {
+  background: rgba(255, 77, 77, 0.2);
+  transform: translateX(5px);
+}
+
+.sidebar ul li a::before {
+  content: '➜';
+  margin-right: 10px;
+  font-size: 14px;
+  color: #ff4d4d;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar ul li a:hover::before {
+  opacity: 1;
+}
+
+.logout-btn {
+  background: rgba(255, 77, 77, 0.2);
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: left;
+  margin-top: auto;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 77, 77, 0.4);
+  transform: translateX(5px);
+}
+
+.logout-btn::before {
+  content: '🚪';
+  margin-right: 10px;
+}
+
+/* Main Content Styles */
+.manage-members-content {
+  flex: 1;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  margin: 100px 20px 20px 300px; /* Adjusted margin-top */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  max-height: 80vh; /* Limits height to prevent overflow */
+  overflow-y: auto; /* Enables scrolling */
+}
+
+.manage-members-content h2 {
+  font-size: 32px;
+  color: #ff4d4d;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Add Member Form Styles */
+.add-member-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.add-member-form input,
+.add-member-form select,
+.add-member-form button {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.add-member-form input::placeholder,
+.add-member-form select::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.add-member-form input:focus,
+.add-member-form select:focus,
+.add-member-form button:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.add-member-form button {
+  background: #ff4d4d;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.add-member-form button:hover {
+  background: #ff1a1a;
+  transform: translateY(-2px);
+}
+
+/* Members List Styles */
+.members-list {
+  background: rgba(34, 34, 34, 0.8);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.members-list h3 {
+  font-size: 24px;
+  color: #ff4d4d;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.members-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.members-list ul li {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.members-list ul li button {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.members-list ul li button.continue-btn {
+  background: #4caf50;
+  color: #ffffff;
+}
+
+.members-list ul li button.continue-btn:hover {
+  background: #45a049;
+}
+
+.members-list ul li button.remove-btn {
+  background: #f44336;
+  color: #ffffff;
+}
+
+.members-list ul li button.remove-btn:hover {
+  background: #e53935;
+}
+
+.members-list ul li button:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .manage-members-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .sidebar ul li {
+    margin: 10px 0;
+  }
+
+  .manage-members-content {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .manage-members-content h2 {
+    font-size: 24px;
+  }
+
+  .members-list {
+    padding: 15px;
+  }
+
+  .members-list h3 {
+    font-size: 20px;
+  }
+}
