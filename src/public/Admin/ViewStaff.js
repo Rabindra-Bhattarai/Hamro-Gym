@@ -10,12 +10,14 @@ const ViewStaff = () => {
   const fetchStaff = async () => {
     const token = localStorage.getItem("token"); // Retrieve the token from local storage
     try {
-      const response = await axios.get('http://localhost:3010/api/staff', {
+      const response = await axios.get('http://localhost:3010/api/users', {
         headers: {
           Authorization: `Bearer ${token}` // Set the Authorization header
         }
       });
-      setStaffList(response.data);
+      // Filter the staff members based on their role
+      const filteredStaff = response.data.filter(user => user.role === 'staff');
+      setStaffList(filteredStaff);
     } catch (error) {
       console.error('Error fetching staff data:', error);
     }
@@ -25,7 +27,7 @@ const ViewStaff = () => {
   const deleteStaff = async (id) => {
     const token = localStorage.getItem("token"); // Retrieve the token from local storage
     try {
-      await axios.delete(`http://localhost:3010/api/staff/${id}`, {
+      await axios.delete(`http://localhost:3010/api/users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}` // Set the Authorization header
         }
@@ -68,9 +70,9 @@ const ViewStaff = () => {
           <tbody>
             {staffList.map((staff) => (
               <tr key={staff.id}>
-                <td>{staff.name}</td>
+                <td>{staff.fullname}</td>
                 <td>{staff.email}</td>
-                <td>{staff.contact}</td>
+                <td>{staff.phonenumber}</td>
                 <td>
                   <button onClick={() => deleteStaff(staff.id)}>Delete</button>
                 </td>
